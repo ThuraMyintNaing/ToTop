@@ -1,0 +1,32 @@
+#rewrite own function for append function in python
+def append(list_name, data):
+    list_name += [data]
+
+
+my_var = [34, 54, 64, 'thura']
+print("Before Append", my_var)
+user_append = input("Enter you want to append  :")
+user_option = int(input("Press 1 to append integer: \nPress 2 to append str"))
+
+if user_option == 1:
+    user_append = int(user_append)
+elif user_option == 2:
+    user_append = user_append
+else:
+    print("Invalid option")
+
+append(my_var, user_append)
+print("After Append", my_var)
+
+#rewrite own function for len function in python
+def count_len(list_name):
+    a = 0
+    for item in list_name:
+        if item == item:
+            a = a+1
+    return a
+
+
+my_list = [34, 43, 35, 'thu']
+len_of_list = count_len(my_list)
+print("len of your list", len_of_list)
