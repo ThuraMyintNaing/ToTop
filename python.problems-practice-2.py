@@ -14,6 +14,7 @@ Current Number 7 Previous Number  6  Sum:  13
 Current Number 8 Previous Number  7  Sum:  15
 Current Number 9 Previous Number  8  Sum:  17
 """
+"""This is my code above comment line are problem """
 a = 0
 for i in range(10):
     previous_num = a
