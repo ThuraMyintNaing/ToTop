@@ -17,10 +17,10 @@ Current Number 9 Previous Number  8  Sum:  17
 """This is my code above comment line are problem """
 a = 0
 for i in range(10):
-    previous_num = a
-    currrent_num = i
-    sum = previous_num + currrent_num
+    sum = a + i
     a = i
 
-    print ("Previous_num:",previous_num, "currrent_num:", currrent_num, "Sum:", sum)
+    print ("Previous_num:",a, "currrent_num:", i, "Sum:", sum)
+
+
 
