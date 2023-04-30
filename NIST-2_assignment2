@@ -1,0 +1,103 @@
+db = {}
+
+
+def main_sector():
+    main_option = int(input("Press 1 to Register:\nPress 2 to Login\nPress 3 Exit:"))
+    if main_option == 1:
+        registration()
+    elif main_option == 2:
+        login()
+    elif main_option == 3:
+        recording_all_data()
+        exit(2)
+    else:
+        print("Invalid Option")
+        main_sector()
+
+
+def registration():
+    user_email = input("Enter your email:")
+    email_get = Email_exit(user_email)
+
+    if email_get is not None:
+        print("Email already exit:\nPlease login")
+        main_sector()
+    else:
+        user_name = input("Enter your username:")
+        user_password = input("Enter your password:")
+        user_phone = input("Enter your phone:")
+        user_age = input("Enter your age:")
+
+        my_id = len(db)
+
+        to_insert = {my_id: {"email": user_email, "u_name": user_name, "password": user_password, "phone": user_phone,
+                             "age": user_age}}
+        db.update(to_insert)
+
+
+def login():
+    user_found = -1
+    print("This is login sector")
+    l_user_email = input("Enter your email to login:")
+    l_user_password = input("Enter your password to login:")
+
+    for i in range(len(db)):
+        if db[i]["email"] == l_user_email and db[i]["password"] == l_user_password:
+            user_found = i
+    if user_found != -1:
+        print("Login Success!")
+        user_profile(user_found)
+    else:
+        print("Not Found ")
+
+
+def user_profile(user_found):
+    print("Welcome:", db[user_found]["u_name"])
+
+    option = int(input("Press 1 to exit"))
+    if option == 1:
+        print("Thank You\nSee You Again")
+        recording_all_data()
+        exit(1)
+
+
+def Email_exit(email):
+    length = len(db)
+    for i in range(length):
+        if db[i]["email"] == email:
+            return i
+
+
+def recording_all_data():
+    with open("thura.txt", 'a') as file:
+        file.writelines(str(db))
+
+
+
+def loading_all_data():
+    file_read = open("thura.txt", 'a')
+    file_read = open("thura.txt", 'r')
+    a = file_read.readlines()
+    if len(a) == 0:
+        pass
+    else:
+        import ast
+        with open('thura.txt') as f:
+            data = f.read()
+        read = ast.literal_eval(data)
+        db.update(read)
+        remove_from_file()
+
+
+def remove_from_file():
+    import os
+    if os.path.exists("thura.txt"):
+        os.remove("thura.txt")
+    else:
+        print("The file does not exist")
+
+
+if __name__ == '__main__':
+    loading_all_data()
+    while True:
+        main_sector()
